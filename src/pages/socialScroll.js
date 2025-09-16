@@ -2,12 +2,23 @@
 
 import React, { useState, useEffect } from "react";
 import { socialLinks } from "../data/sLinks.js";
-import MusicModal from "./MusicModal"; // import modal
+import MusicModal from "./MusicModal";
 import "./styling/items.css";
 
 const SocialScroll = () => {
   const [rotationValue, setRotationValue] = useState(0);
   const [showMusicModal, setShowMusicModal] = useState(false);
+  const [dimensions, setDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () =>
+      setDimensions({ width: window.innerWidth, height: window.innerHeight });
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const handleWheel = (e) => {
@@ -17,9 +28,10 @@ const SocialScroll = () => {
     return () => window.removeEventListener("wheel", handleWheel);
   }, []);
 
-  const baseRadius = 220;
-  const centerX = 250;
-  const centerY = 250;
+  const minDim = Math.min(dimensions.width, dimensions.height);
+  const baseRadius = minDim * 0.35; // circle radius relative to screen size
+  const centerX = dimensions.width / 2;
+  const centerY = dimensions.height / 2;
 
   return (
     <div className="social-scroll-wrapper">
@@ -37,7 +49,7 @@ const SocialScroll = () => {
           const distanceToCenter = Math.abs(y - centerY);
           const normalized = Math.min(distanceToCenter / baseRadius, 1);
 
-          const baseSize = 45;
+          const baseSize = minDim * 0.08; // ~8% of viewport
           const scale = 1 + (1 - Math.pow(normalized, 1.5)) * 1.0;
           const opacity = 0.3 + (1 - normalized) * 0.9;
           const size = baseSize * scale;
@@ -49,7 +61,7 @@ const SocialScroll = () => {
               key={index}
               className="social-link"
               style={{
-                transform: `translate(${x}px, ${y}px) scale(${scale})`,
+                transform: `translate(${x - size / 2}px, ${y - size / 2}px) scale(${scale})`,
                 opacity,
               }}
             >
@@ -61,14 +73,7 @@ const SocialScroll = () => {
                   }}
                   className="social-btn"
                 >
-                  <img
-                    src={link.image}
-                    alt={link.name}
-                    style={{
-                      width: `${size}px`,
-                      height: "auto",
-                    }}
-                  />
+                  <img src={link.image} alt={link.name} style={{ width: `${size}px`, height: "auto" }} />
                   <span>{link.name}</span>
                 </button>
               ) : (
@@ -78,14 +83,7 @@ const SocialScroll = () => {
                   rel="noopener noreferrer"
                   className="social-anchor"
                 >
-                  <img
-                    src={link.image}
-                    alt={link.name}
-                    style={{
-                      width: `${size}px`,
-                      height: "auto",
-                    }}
-                  />
+                  <img src={link.image} alt={link.name} style={{ width: `${size}px`, height: "auto" }} />
                   <span>{link.name}</span>
                 </a>
               )}
@@ -94,11 +92,7 @@ const SocialScroll = () => {
         })}
       </div>
 
-      {/* Music Modal */}
-      <MusicModal
-        isOpen={showMusicModal}
-        onClose={() => setShowMusicModal(false)}
-      />
+      <MusicModal isOpen={showMusicModal} onClose={() => setShowMusicModal(false)} />
     </div>
   );
 };

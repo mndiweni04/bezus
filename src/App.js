@@ -5,7 +5,9 @@ import SocialScroll from './pages/socialScroll.js';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App"
+    style={{ backgroundImage: 'url(/icons/black-paper.png)' }}
+    >
       <Hero />
       <SocialScroll />
     </div>

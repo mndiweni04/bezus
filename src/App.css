@@ -1,5 +1,10 @@
-*{
-    background-color: rgb(136, 136, 136);
+body{
+  text-align: center;
+  height: 100vh;
+  background-color: #8a8a8a; /* maroon base */
+  background-size: 400px 400px;
+  background-repeat: repeat;
+  background-blend-mode: overlay;
 }
 
 .App {
