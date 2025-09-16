@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
+
+.hero-name {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: 'Metal Mania', cursive;
+  font-size: 10rem;
+  color: transparent; /* Transparent text */
+  -webkit-text-stroke: 2px #000000; /* Outline stroke */
+  background: none; /* No background */
+  z-index: 10; /* Above icons */
+  pointer-events: none; /* Don’t block icon clicks */
+}

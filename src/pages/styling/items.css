@@ -1,0 +1,74 @@
+/* src/styling/items.css */
+
+.social-scroll-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.social-circle {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.social-link {
+  position: absolute;
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+/* Shared reset for anchors and buttons */
+.social-link a.social-anchor,
+.social-link button.social-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  text-decoration: none;
+  font: inherit; /* ensures same font family + size */
+}
+
+/* Shared label styling */
+.social-link a.social-anchor span,
+.social-link button.social-btn span {
+  margin-top: 2px;
+  font-size: 16px;
+  font-weight: 500;
+  color: black;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  line-height: 1.1;
+}
+
+/* Hover effect */
+.social-link a.social-anchor:hover span {
+  text-decoration: underline;
+}
+
+.social-link img {
+  display: inline-block;   /* not block */
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  max-width: 100%;         /* prevent upscaling */
+  height: auto;
+  object-fit: contain;     /* keeps aspect ratio */
+  pointer-events: none;
+}
+
+.social-link,
+.social-link * {
+  background: transparent !important;
+}
