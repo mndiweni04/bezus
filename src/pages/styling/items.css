@@ -1,39 +1,58 @@
 /* src/styling/items.css */
-
 .social-scroll-wrapper {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0; 
   width: 100%;
   height: 100%;
   overflow: hidden;
   z-index: 1;
+  touch-action: none; 
 }
 
 .social-circle {
-  position: relative; /* relative so children can be absolutely positioned */
+  position: relative;
   width: 100%;
   height: 100%;
+  pointer-events: none; 
 }
 
-/* Each link sits on the circle path */
 .social-link {
   position: absolute;
+  pointer-events: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
-  pointer-events: auto;
-  white-space: nowrap; /* stops labels from wrapping */
+  justify-content: flex-start;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  width: var(--icon-size, 100px);
+  height: var(--icon-size, 100px);
+  line-height: 0;
 }
 
-/* Shared reset for anchors and buttons */
+.social-link img {
+  width: 100%;
+  height: 100%;  
+  object-fit: contain; 
+  display: block;
+}
+
+/* label under icon */
+.social-link span {
+  margin-top: 6px;
+  font-size: 16px;
+  font-weight: 300;
+  color: black;
+  text-shadow: 0 1px 3px rgb(255, 255, 255);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
 .social-link a.social-anchor,
 .social-link button.social-btn {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   background: none;
   border: none;
   padding: 0;
@@ -43,60 +62,12 @@
   font: inherit;
 }
 
-/* Shared label styling */
-.social-link a.social-anchor span,
-.social-link button.social-btn span {
-  margin-top: 4px;
-  font-size: 16px;
-  font-weight: 500;
-  color: black;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-  line-height: 1.2;
-  white-space: nowrap; /* keeps single-line titles */
-}
-
-/* Hover effect */
-.social-link a.social-anchor:hover span,
-.social-link button.social-btn:hover span {
-  text-decoration: underline;
-}
-
-.social-link span {
-  margin-top: 0.5em; /* scales with font */
-}
-
-.social-link img {
-  display: inline-block;
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-  pointer-events: none;
-}
-
-.social-link,
-.social-link * {
-  background: transparent !important;
-}
-
 @media (max-width: 768px) {
-  .social-link img {
-    max-width: 55px;
-  }
-
-  .social-link span {
-    font-size: 14px;
-  }
+  .social-link { width: var(--icon-size, 72px); height: var(--icon-size, 72px); }
+  .social-link span { font-size: 13px; }
 }
 
 @media (max-width: 480px) {
-  .social-link img {
-    max-width: 45px;
-  }
-
-  .social-link span {
-    font-size: 12px;
-  }
+  .social-link { width: var(--icon-size, 64px); height: var(--icon-size, 64px); }
+  .social-link span { font-size: 12px; }
 }

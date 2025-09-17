@@ -37,8 +37,8 @@
 
 /* Remove ALL backgrounds inside modal */
 .modal-content * {
-  background: none !important;  /* kill backgrounds on h2, li, a */
-  box-shadow: none !important;  /* remove any shadow outlines */
+  background: none !important; 
+  box-shadow: none !important;  
 }
 
 /* Music list */
