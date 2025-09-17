@@ -16,7 +16,7 @@ export const socialLinks = [
   },
   {
     name : 'Instagram',
-    image : "/icons/insta.png",
+    image : "/icons/insta2.png",
     url: 'https://www.instagram.com/holybzs?igsh=OW8xM3RtcTNlNmQz'
   },
   {
